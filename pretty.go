@@ -22,7 +22,7 @@ func ProcessMessages(stdin io.Reader, writer io.Writer, resultsMode bool) {
 	stepPrinters := make(map[string]*StepPrinter)
 	picklePrinters := make(map[string]*PicklePrinter)
 
-	r := gio.NewDelimitedReader(stdin, 4096)
+	r := gio.NewDelimitedReader(stdin, 1e6)
 	for {
 		wrapper := &messages.Wrapper{}
 		err := r.ReadMsg(wrapper)
