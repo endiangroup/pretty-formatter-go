@@ -7,14 +7,15 @@ package pretty
 
 import (
 	"fmt"
-	"github.com/cucumber/cucumber-messages-go/v2"
-	gio "github.com/gogo/protobuf/io"
 	"io"
 	"io/ioutil"
 	"regexp"
 	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	"github.com/cucumber/cucumber-messages-go/v2"
+	gio "github.com/gogo/protobuf/io"
 )
 
 func ProcessMessages(stdin io.Reader, writer io.Writer, resultsMode bool) {
@@ -139,6 +140,7 @@ func (dp *DocumentPrinter) processGherkinDocument() {
 func (dp *DocumentPrinter) processFeature() {
 	dp.processComments(dp.Doc.Feature.Location)
 	dp.processKeywordNode(0, dp.Doc.Feature)
+	dp.processDescription(1, dp.Doc.Feature.Description)
 	for _, child := range dp.Doc.Feature.Children {
 		fmt.Fprintf(dp.Writer, "\n")
 		switch t := child.Value.(type) {
@@ -341,6 +343,14 @@ func (tp *TablePrinter) processTable(depth int) {
 func (dp *DocumentPrinter) processKeywordNode(depth int, keywordNode KeywordNode) {
 	fmt.Fprintf(dp.Writer, strings.Repeat(" ", depth*2))
 	fmt.Fprintf(dp.Writer, "%s: %s\n", keywordNode.GetKeyword(), keywordNode.GetName())
+}
+
+func (dp *DocumentPrinter) processDescription(depth int, description string) {
+	lines := strings.Split(description, "\n")
+	for _, line := range lines {
+		fmt.Fprintf(dp.Writer, strings.Repeat(" ", depth*2))
+		fmt.Fprintf(dp.Writer, strings.TrimSpace(line)+"\n")
+	}
 }
 
 type KeywordNode interface {
