@@ -352,7 +352,6 @@ func (dp *DocumentPrinter) processDescription(depth int, description string) {
 		if len(value) == 0 {
 			continue
 		}
-		fmt.Println("@@", value)
 		fmt.Fprintf(dp.Writer, strings.Repeat(" ", depth*2))
 		fmt.Fprintf(dp.Writer, value+"\n")
 	}
