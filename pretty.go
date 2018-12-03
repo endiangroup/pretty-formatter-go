@@ -348,8 +348,13 @@ func (dp *DocumentPrinter) processKeywordNode(depth int, keywordNode KeywordNode
 func (dp *DocumentPrinter) processDescription(depth int, description string) {
 	lines := strings.Split(description, "\n")
 	for _, line := range lines {
+		value := strings.TrimSpace(line)
+		if len(value) == 0 {
+			continue
+		}
+		fmt.Println("@@", value)
 		fmt.Fprintf(dp.Writer, strings.Repeat(" ", depth*2))
-		fmt.Fprintf(dp.Writer, strings.TrimSpace(line)+"\n")
+		fmt.Fprintf(dp.Writer, value+"\n")
 	}
 }
 
