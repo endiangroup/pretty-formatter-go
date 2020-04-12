@@ -1,6 +1,7 @@
 module github.com/endiangroup/pretty-formatter-go
 
 require (
+	github.com/aslakhellesoy/gox v1.0.100 // indirect
 	github.com/cucumber/cucumber-messages-go/v2 v2.0.0
 	github.com/cucumber/gherkin-go v0.0.0-20181022222825-04ff9f06a694
 	github.com/fatih/color v1.7.0
