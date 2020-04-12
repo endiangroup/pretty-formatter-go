@@ -5,9 +5,10 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"github.com/cucumber/gherkin-go"
-	"github.com/cucumber/pretty-formatter-go"
 	"os"
+
+	"github.com/cucumber/gherkin-go"
+	"github.com/endiangroup/pretty-formatter-go"
 )
 
 var dialectFlag = flag.String("dialect", "en", "Gherkin Dialect")

@@ -1,4 +1,4 @@
-module github.com/cucumber/pretty-formatter-go
+module github.com/endiangroup/pretty-formatter-go
 
 require (
 	github.com/cucumber/cucumber-messages-go/v2 v2.0.0
@@ -9,3 +9,5 @@ require (
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/stretchr/testify v1.2.2
 )
+
+go 1.13
